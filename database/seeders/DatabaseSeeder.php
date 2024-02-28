@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             veriekle::class,
+            kategoriSeeder::class,
+            kitapSeeder::class,
+
         ]);
     }
 }

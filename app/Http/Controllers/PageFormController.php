@@ -2,47 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\veri;
+
+use App\Models\kitap;
+use App\Models\kategori;
 use Illuminate\Http\Request;
 
 class PageFormController extends Controller
 {
+
     public function formsave(Request $request){
 
-        if ($request->kabul == "on") {
-            $veri=new veri();
-            $veri->name=$request->name;
-            $veri->surname=$request->surname;
-            $veri->age=$request->age;
-            $veri->kabul="1";
-            $kontrol=$veri->save();
-            if ($kontrol==1) {
-                $yes="İşleminiz Başarıyla Yapıldı";
-                return view('frontend.pages.index', compact('yes'));
-            }
-            if ($kontrol!=1) {
-                $no="Malesef Tekrar Deneyin";
-                return view('frontend.pages.index', compact('no'));
-            }
+        if ($request->kitap_adi=="" || $request->kitap_yazari=="" || $request->kitap_kategori=="" ) {
 
+            $data['olmadi']="Bir Sıkıntı Oluştu Tekrar Deneyiniz";
+            return view('frontend.pages.form', $data);
         }
 
-        if ($request->kabul != "on") {
-            $veri=new veri();
-            $veri->name=$request->name;
-            $veri->surname=$request->surname;
-            $veri->age=$request->age;
-            $veri->kabul="0";
+        if ($request->kitap_adi!="" || $request->kitap_yazari!="" || $request->kitap_kategori!="" ) {
+
+            $veri=new kitap();
+            $veri->kitap_name=$request->kitap_adi;
+            $veri->kitap_yazari=$request->kitap_yazari;
+            $veri->kitap_kategori=$request->kitap_kategori;
             $kontrol=$veri->save();
+
             if ($kontrol==1) {
-                $yes="İşleminiz Başarıyla Yapıldı";
-                return view('frontend.pages.index', compact('yes'));
+
+                $data['yes']="İşleminiz Başarıyla Yapıldı";
+                $data['veri']=kategori::all();
+                return view('frontend.pages.form', $data);
             }
             if ($kontrol!=1) {
-                $no="Malesef Tekrar Deneyin";
-                return view('frontend.pages.index', compact('no'));
+
+                $data['no']="Bir Sıkıntı Oluştu";
+                $data['veri']=kategori::all();
+                return view('frontend.pages.form', $data);
             }
         }
+
+
 
     }
 }

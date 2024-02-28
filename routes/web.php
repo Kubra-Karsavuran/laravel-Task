@@ -17,10 +17,14 @@ use App\Http\Controllers\PageListeController;
 */
 
 Route::get('/', [PageHomeController::class, 'index'])->name('index');
-Route::get('/liste/kabul', [PageListeController::class, 'listeOk'])->name('liste.ok');
-Route::get('/liste/red', [PageListeController::class, 'listeNo'])->name('liste.no');
-
-Route::get('/listesil/{sil_id}', [PageListeController::class, 'listeSil'])->name('veri.sil');
-
-
 Route::post('/formkaydet', [PageFormController::class, 'formsave'])->name('form.kaydet');
+Route::get('/frontListe/{kategori_id}', [PageListeController::class, 'kitap_liste'])->name('kitap.liste');
+Route::get('/panel', [PageHomeController::class, 'panel_open'])->name('panel');
+Route::get('/kitapsil/{sil_id}', [PageListeController::class, 'kitapsil'])->name('kitap.sil');
+Route::get('/kitapguncelle/{guncelle_id}', [PageListeController::class, 'kitapguncelle'])->name('kitap.guncelle');
+Route::post('/kitapguncelleform', [PageListeController::class, 'kitapguncelleform'])->name('form.guncel');
+Route::get('/kitapislem', [PageListeController::class, 'yansit'])->name('kitap.islem.liste');
+
+
+
+

@@ -4,7 +4,6 @@
 
 <!-- section -->
 <div class="container">
-    Seçilen Kategori : <?php echo $kategori->kategori_name; ?>
 @if (!empty($veri) && $veri->count() > 0)
 <?php $sayac=0; foreach ($veri as $value) { $sayac++; ?>
     <div class="row">
@@ -13,6 +12,8 @@
             <p>Kitap Adı : <?php echo $value->kitap_name; ?> </p>
             <p>Kitap Yazarı :  <?php echo $value->kitap_yazari; ?> </p>
 
+            <button type="button" class="btn btn-info"><a href="{{route('kitap.guncelle', $value->id)}}" style="color: white; text-decoration:none;">Kitap Guncelle</a></button>
+            <button type="button" class="btn btn-danger"><a href="{{route('kitap.sil', $value->id)}}" style="color: white; text-decoration:none;">Kitabı Sil</a></button>
 
             <hr>
         </div>
