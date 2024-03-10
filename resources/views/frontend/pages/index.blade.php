@@ -3,6 +3,7 @@
 
 
 <div class="container">
+    <h2>kategoriler</h2>
     <div class="row">
         <h3 style="color:blue;">Listelemek İstediğiniz Kitap Kategorisini Seçin</h3>
         <div class="dropdown">
